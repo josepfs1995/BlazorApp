@@ -1,0 +1,17 @@
+@page "/citas"
+@inherits CitaComponent
+<table>
+    <thead>
+        <tr>
+            <th>Id Cita</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Citas)
+        {
+            <tr>
+                <td>@item.nId_Citas</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+@page "/personas"
+@inherits PersonaComponent
+
+<div class="row mb-5">
+  <div class="col-md-12">
+    <div class="form-group row">
+      <label class="col-md-4">Nombre: </label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" @bind="Nombre" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-4">Apellido: </label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" @bind="Apellido" />
+      </div>
+    </div>
+    <button class="btn btn-sm btn-info" hidden="@isEdit" @onclick="Crear">Guardar</button>
+    <button class="btn btn-sm btn-info" hidden="@(!isEdit)"  @onclick="Editar">Editar</button>
+    <button class="btn btn-sm btn-info" @onclick="Limpiar">Limpiar</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var persona in personas)
+        {
+          <tr>
+            <td>@persona.Nombre</td>
+            <td>@persona.Apellido</td>
+            <td>
+              <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-info" @onclick="async () => await GetFromEdit(persona.Codigo)">Editar</button>
+                <button class="btn btn-sm btn-danger" @onclick="async () => await Eliminar(persona.Codigo)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
